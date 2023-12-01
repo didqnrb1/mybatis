@@ -1,4 +1,4 @@
-package com.example;
+package com.example.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

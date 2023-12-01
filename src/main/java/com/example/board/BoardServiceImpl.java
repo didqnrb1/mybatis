@@ -1,10 +1,15 @@
-package com.example;
+package com.example.board;
 
+import com.example.board.BoardDAO;
+import com.example.board.BoardService;
+import com.example.board.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class BoardServiceImpl implements BoardService{
+@Service
+public class BoardServiceImpl implements BoardService {
 
     @Autowired
     BoardDAO boardDAO;

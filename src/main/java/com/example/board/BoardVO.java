@@ -1,6 +1,7 @@
-package com.example;
+package com.example.board;
 
-import java.text.SimpleDateFormat;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 public class BoardVO {
