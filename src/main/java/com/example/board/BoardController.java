@@ -15,7 +15,7 @@ public class BoardController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String boardlist(Model model) {
-        model.addAttribute("post", boardService.getBoardList());
+        model.addAttribute("list", boardService.getBoardList());
         return "post";
     }
 
@@ -24,13 +24,15 @@ public class BoardController {
         return "addform";
     }
 
-    @RequestMapping(value = "/addok", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/addok", method = RequestMethod.POST)
     public String addPostOK(BoardVO vo) {
+
         if(boardService.insertBoard(vo) == 0)
             System.out.println("데이터 추가 실패 ");
         else
             System.out.println("데이터 추가 성공!!!");
-        return "redirect:list";
+
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/editform/{id}", method = RequestMethod.GET)
@@ -55,6 +57,6 @@ public class BoardController {
             System.out.println("데이터 삭제 실패 ");
         else
             System.out.println("데이터 삭제 성공!!!");
-        return "redirect:../list";
+        return "redirect:../";
     }
 }
