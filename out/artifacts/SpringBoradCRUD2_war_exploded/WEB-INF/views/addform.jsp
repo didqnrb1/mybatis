@@ -65,7 +65,7 @@
 
 <h1>Add New Post</h1>
 
-<form action="addok" method="post">
+<form action="addok" method="post" accept-charset="UTF-8">
     <table>
         <tr><td>Category:</td><td>
             <input list="category" name="category">
