@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/board")
+//@RequestMapping(value = "/board")
 public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String boardlist(Model model) {
-        model.addAttribute("list", boardService.getBoardList());
-        return "list";
+        model.addAttribute("post", boardService.getBoardList());
+        return "post";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPost() {
-        return "addpostform";
+        return "addform";
     }
 
     @RequestMapping(value = "/addok", method = RequestMethod.POST)
