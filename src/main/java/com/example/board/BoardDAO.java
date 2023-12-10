@@ -1,5 +1,6 @@
 package com.example.board;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,7 +14,38 @@ import java.util.List;
 public class BoardDAO {
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    SqlSession SqlSession;
+
+
+    public int insertBoard(BoardVO vo) {
+        int result = SqlSession.insert("Board.insertBoard",vo);
+        return result;
+    }
+
+
+    public BoardVO getBoard(int seq) {
+       BoardVO one = SqlSession.selectOne("Board.getBoard",seq);
+       return one;
+    }
+
+    public List<BoardVO> getBoardList() {
+        List<BoardVO> list = SqlSession.selectList("Board.getBoardList");
+        return list;
+    }
+
+
+
+//    public int deleteBoard(int seq) {
+//        String sql = "DELETE FROM BOARD WHERE seq=?";
+//        return jdbcTemplate.update(sql, seq);
+//    }
+//
+//    public int updateBoard(BoardVO vo) {
+//        String sql = "UPDATE BOARD SET category=?, title=?, writer=?, content=?, editdate=? WHERE seq=?";
+//        return jdbcTemplate.update(sql, vo.getCategory(), vo.getTitle(), vo.getWriter(), vo.getContent(), vo.getEditdate(), vo.getSeq());
+//    }
+
+
 
     class BoardRowMapper implements RowMapper<BoardVO> {
         @Override
@@ -31,28 +63,4 @@ public class BoardDAO {
         }
     }
 
-    public int insertBoard(BoardVO vo) {
-        String sql = "INSERT INTO BOARD (category, title, writer, content) VALUES (?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, vo.getCategory(), vo.getTitle(), vo.getWriter(), vo.getContent());
-    }
-
-    public int deleteBoard(int seq) {
-        String sql = "DELETE FROM BOARD WHERE seq=?";
-        return jdbcTemplate.update(sql, seq);
-    }
-
-    public int updateBoard(BoardVO vo) {
-        String sql = "UPDATE BOARD SET category=?, title=?, writer=?, content=?, editdate=? WHERE seq=?";
-        return jdbcTemplate.update(sql, vo.getCategory(), vo.getTitle(), vo.getWriter(), vo.getContent(), vo.getEditdate(), vo.getSeq());
-    }
-
-    public BoardVO getBoard(int seq) {
-        String sql = "SELECT * FROM BOARD WHERE seq=?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{seq}, new BoardRowMapper());
-    }
-
-    public List<BoardVO> getBoardList() {
-        String sql = "SELECT * FROM BOARD ORDER BY seq DESC";
-        return jdbcTemplate.query(sql, new BoardRowMapper());
-    }
 }

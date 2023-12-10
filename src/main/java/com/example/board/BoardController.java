@@ -42,21 +42,21 @@ public class BoardController {
         return "editform";
     }
 
-    @RequestMapping(value = "/editok", method = RequestMethod.POST)
-    public  String editPostOK(BoardVO vo) {
-        if(boardService.updateBoard(vo) == 0)
-            System.out.println("데이터 수정 실패 ");
-        else
-            System.out.println("데이터 수정 성공!!!");
-        return "redirect:list";
-    }
-
-    @RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
-    public String deletePostOK(@PathVariable("id") int id) {
-        if(boardService.deleteBoard(id) == 0)
-            System.out.println("데이터 삭제 실패 ");
-        else
-            System.out.println("데이터 삭제 성공!!!");
-        return "redirect:../";
-    }
+//    @RequestMapping(value = "/editok", method = RequestMethod.POST)
+//    public  String editPostOK(BoardVO vo) {
+//        if(boardService.updateBoard(vo) == 0)
+//            System.out.println("데이터 수정 실패 ");
+//        else
+//            System.out.println("데이터 수정 성공!!!");
+//        return "redirect:list";
+//    }
+//
+//    @RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
+//    public String deletePostOK(@PathVariable("id") int id) {
+//        if(boardService.deleteBoard(id) == 0)
+//            System.out.println("데이터 삭제 실패 ");
+//        else
+//            System.out.println("데이터 삭제 성공!!!");
+//        return "redirect:../";
+//    }
 }
